@@ -37,18 +37,9 @@ Page({
     // 结果数据
     recipe: null,
     
-    // 顶部导航栏高度适配
-    navHeight: 44,
-    statusBarHeight: 20,
   },
 
   onLoad() {
-    // 获取系统状态栏高度，用于适配自定义导航
-    const systemInfo = wx.getSystemInfoSync();
-    this.setData({
-      statusBarHeight: systemInfo.statusBarHeight,
-      navHeight: systemInfo.statusBarHeight + 44
-    });
   },
 
   onInput(e) {

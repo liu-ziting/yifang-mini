@@ -3,18 +3,11 @@
   <image class="bg-image" src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" mode="aspectFill"></image>
   <view class="bg-mask"></view>
 </view>
-
-<!-- 自定义导航栏占位 -->
-<view style="height: {{navHeight}}px; padding-top: {{statusBarHeight}}px; padding-left: 16px; display: flex; align-items: center; color: #fff; font-weight: bold; font-size: 18px; position: relative; z-index: 10;">
-  AI 灵感厨房
-</view>
-
-<view class="container" style="padding-top: 20px;">
-
+<view class="container" style="padding-top: 40px;">
   <!-- 欢迎标语 -->
   <view class="hero-text">
-    <view class="hero-title">今天吃什么？</view>
-    <view class="hero-sub">输入食材，AI 为你定制米其林食谱</view>
+    <view class="hero-title">一饭封神</view>
+    <view class="hero-sub">灶间有AI，顿顿米其林！</view>
   </view>
 
   <!-- 核心操作卡片 -->
