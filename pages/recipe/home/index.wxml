@@ -6,8 +6,8 @@
 <view class="container">
   <!-- Hero 标题 -->
   <view class="hero-text fade-in">
-    <view class="hero-title">今天吃什么？</view>
-    <view class="hero-sub">Tell me what you have, I'll tell you what to cook.</view>
+    <view class="hero-title">一饭封神</view>
+    <view class="hero-sub">灶间有AI，顿顿米其林！</view>
   </view>
 
   <!-- 主操作卡片 -->
@@ -15,7 +15,7 @@
     
     <!-- 步骤 0: 输入食材 -->
     <block wx:if="{{currentStep === 0}}">
-      <view class="label">我的冰箱里有...</view>
+      <view class="label">输入你现有的食材，按回车添加</view>
       <ingredient-input 
         basket="{{basket}}" 
         ingredientCategories="{{ingredientCategories}}"

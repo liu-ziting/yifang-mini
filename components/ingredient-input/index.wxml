@@ -11,7 +11,7 @@
         bindconfirm="addIngredient"
       />
     </view>
-    <view class="add-btn-mini" bindtap="addIngredient" hover-class="btn-hover">
+    <view wx:if="{{false}}" class="add-btn-mini" bindtap="addIngredient" hover-class="btn-hover">
       <t-icon name="add" size="24px" color="#fff" />
     </view>
   </view>
@@ -28,7 +28,7 @@
       <!-- Trigger Button -->
       <view class="basket-trigger" bindtap="openIngredientPopup">
         <t-icon name="shop" size="18px" color="#FA8C16" style="margin-right: 6px;" />
-        <text>打开菜篮子</text>
+        <text>打开冰箱</text>
       </view>
     </view>
   </view>
@@ -56,7 +56,7 @@
 
   <view class="action-area" wx:if="{{basket.length > 0}}">
     <button class="generate-btn" bindtap="nextStep" hover-class="btn-hover">
-      <text>下一步：选择口味</text>
+      <text>下一步：选择大师</text>
       <t-icon name="arrow-right" size="20px" color="#fff" style="margin-left:8px;"/>
     </button>
   </view>

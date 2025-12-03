@@ -35,7 +35,7 @@
       <text>上一步</text>
     </button>
     <button class="generate-btn btn-primary" bindtap="onGenerate" hover-class="btn-hover">
-      <text>开始生成</text>
+      <text>生成菜谱</text>
       <t-icon name="magic" size="20px" color="#fff" style="margin-left:8px;"/>
     </button>
   </view>

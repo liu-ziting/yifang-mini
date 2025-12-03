@@ -192,7 +192,14 @@ Page({
       wx.showToast({ title: '先告诉我冰箱里有什么食材~', icon: 'none' });
       return;
     }
-    this.setData({ currentStep: 1 });
+    
+    // Default select the first master
+    const firstMasterId = this.data.cuisineSections[0].items[0].id;
+
+    this.setData({ 
+      currentStep: 1,
+      selectedCuisineId: firstMasterId
+    });
   },
 
   prevStep() {
