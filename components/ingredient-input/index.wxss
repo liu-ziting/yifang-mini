@@ -116,19 +116,14 @@
   font-weight: 500;
 }
 
-.tags-scroll {
-  width: 100%;
-  white-space: nowrap;
-}
-
-.tags-wrapper {
+.dietary-list {
   display: flex;
-  padding: 4rpx 0 10rpx 0;
+  flex-wrap: wrap;
+  gap: 16rpx;
 }
 
 .dietary-tag {
-  margin-right: 16rpx;
-  flex-shrink: 0;
+  /* No extra margins needed with gap */
 }
 
 /* --- Action Area --- */
