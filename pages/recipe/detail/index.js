@@ -272,5 +272,14 @@ Page({
 
   onBack() {
     wx.navigateBack();
+  },
+
+  onPreviewImage() {
+    if (this.data.recipe && this.data.recipe.image) {
+      wx.previewImage({
+        urls: [this.data.recipe.image],
+        current: this.data.recipe.image
+      });
+    }
   }
 });

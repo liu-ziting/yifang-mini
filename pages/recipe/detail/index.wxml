@@ -12,7 +12,7 @@
     
     <!-- 菜谱头图 -->
     <view class="recipe-header">
-      <image src="{{recipe.image}}" mode="aspectFill" class="recipe-img"></image>
+      <image src="{{recipe.image}}" mode="aspectFill" class="recipe-img" bindtap="onPreviewImage"></image>
       <view class="img-loading-mask" wx:if="{{generatingImage}}">
         <t-loading theme="circular" size="30px" text="效果图生成中..." inherit-color />
       </view>
