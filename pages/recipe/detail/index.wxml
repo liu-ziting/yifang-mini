@@ -13,6 +13,9 @@
     <!-- 菜谱头图 -->
     <view class="recipe-header">
       <image src="{{recipe.image}}" mode="aspectFill" class="recipe-img"></image>
+      <view class="img-loading-mask" wx:if="{{generatingImage}}">
+        <t-loading theme="circular" size="30px" text="图片生成中..." inherit-color />
+      </view>
       <!-- 返回按钮 -->
       <view class="back-btn" bindtap="onBack" style="{{backBtnStyle}}">
         <t-icon name="chevron-left" size="24px" color="#fff"/>

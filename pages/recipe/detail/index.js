@@ -1,3 +1,5 @@
+import { generateCustomRecipe, generateRecipeImage } from '../../../services/ai-service';
+
 const cuisines = [
   {
       id: 'su',
@@ -129,7 +131,8 @@ Page({
     ingredients: [],
     cuisineId: null,
     dietary: [],
-    backBtnStyle: ''
+    backBtnStyle: '',
+    generatingImage: false
   },
 
   onLoad(options) {
@@ -160,22 +163,72 @@ Page({
     this.setData({ loading: true, loadingText: '正在识别食材灵感...' });
 
     // 2. 模拟 AI 思考过程 (文案变化)
-    setTimeout(() => {
+    const loadingTimer1 = setTimeout(() => {
       this.setData({ loadingText: '正在匹配最佳烹饪方式...' });
     }, 1500);
 
-    setTimeout(() => {
+    const loadingTimer2 = setTimeout(() => {
       this.setData({ loadingText: '正在计算卡路里与摆盘...' });
     }, 3000);
 
-    // 3. 模拟请求结束 (4.5秒后)
-    setTimeout(() => {
-      const mockResult = this.generateMockResult(ingredients, cuisineId, dietary);
+    try {
+      // 构造 Custom Prompt
+      const cuisine = cuisines.find(c => c.id === cuisineId);
+      let customPrompt = cuisine ? cuisine.prompt : '请根据食材推荐一道家常菜。';
+
+      if (dietary && dietary.length > 0) {
+        customPrompt += `\n\n特别注意忌口和偏好：${dietary.join('、')}。请务必遵守这些限制。`;
+      }
+
+      // 调用真实 API
+      const recipe = await generateCustomRecipe(ingredients, customPrompt);
+      
+      // 清除定时器
+      clearTimeout(loadingTimer1);
+      clearTimeout(loadingTimer2);
+
       this.setData({ 
         loading: false, 
-        recipe: mockResult
+        recipe: recipe
       });
-    }, 4500);
+
+      // 异步生成图片
+      this.generateImage(recipe);
+
+    } catch (error) {
+      console.error('AI Generate Error:', error);
+      
+      // 降级处理：如果 API 失败，回退到 Mock 数据
+      // 确保至少展示了加载动画一段时间，以免闪烁
+      setTimeout(() => {
+        const mockResult = this.generateMockResult(ingredients, cuisineId, dietary);
+        this.setData({ 
+          loading: false, 
+          recipe: mockResult
+        });
+        
+        // 提示用户（可选）
+        // wx.showToast({ title: 'AI 服务繁忙，为您展示推荐食谱', icon: 'none' });
+      }, 2000);
+    }
+  },
+
+  async generateImage(recipe) {
+    this.setData({ generatingImage: true });
+    try {
+      const imageResult = await generateRecipeImage(recipe);
+      if (imageResult && imageResult.url) {
+        this.setData({
+          'recipe.image': imageResult.url,
+          generatingImage: false
+        });
+      }
+    } catch (error) {
+      console.error('Image Generate Error:', error);
+      this.setData({ generatingImage: false });
+      // 图片生成失败时，保持默认图片
+      wx.showToast({ title: '图片生成失败，使用默认图', icon: 'none' });
+    }
   },
 
   // 模拟数据生成
