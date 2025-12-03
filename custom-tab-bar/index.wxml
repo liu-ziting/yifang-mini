@@ -1,4 +1,4 @@
-<t-tab-bar value="{{value}}" bindchange="onChange" split="{{false}}" color="#999" selected-color="#FA8C16">
+<t-tab-bar value="{{value}}" bindchange="onChange" split="{{false}}" shape="round" theme="tag" color="#bbbbbb" selected-color="#FA8C16">
   <t-tab-bar-item wx:for="{{list}}" wx:key="value" value="{{item.value}}" icon="{{item.icon}}">
     {{item.label}}
   </t-tab-bar-item>

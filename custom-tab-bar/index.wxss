@@ -1,3 +1,14 @@
 .t-tab-bar {
   box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);
 }
+
+/* 强制覆盖 TDesign 的默认蓝色主题 */
+.t-tab-bar-item--active {
+  color: #FA8C16 !important;
+}
+
+/* 如果使用了 tag 主题，可能还需要覆盖背景色或文字颜色变量 */
+:host {
+  --td-tab-bar-active-color: #FA8C16;
+  --td-brand-color: #FA8C16;
+}
