@@ -33,6 +33,29 @@
     </view>
   </view>
 
+  <view class="dietary-section">
+    <view class="section-header">
+      <text class="section-title" style="margin-left: 6px;">有什么忌口或偏好？</text>
+    </view>
+    <scroll-view scroll-x class="tags-scroll" enable-flex>
+      <view class="tags-wrapper">
+        <t-tag
+          wx:for="{{restrictions}}" 
+          wx:key="*this"
+          class="dietary-tag"
+          variant="{{tools.includes(selectedRestrictions, item) ? 'light-outline' : 'outline'}}"
+          theme="{{tools.includes(selectedRestrictions, item) ? 'warning' : 'default'}}"
+          shape="round"
+          size="medium"
+          bind:tap="toggleRestriction"
+          data-item="{{item}}"
+        >
+          {{item}}
+        </t-tag>
+      </view>
+    </scroll-view>
+  </view>
+
   <view class="action-area" wx:if="{{basket.length > 0}}">
     <button class="generate-btn" bindtap="nextStep" hover-class="btn-hover">
       <text>下一步：选择口味</text>

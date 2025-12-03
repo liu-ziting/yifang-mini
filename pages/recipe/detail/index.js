@@ -128,6 +128,7 @@ Page({
     recipe: null,
     ingredients: [],
     cuisineId: null,
+    dietary: [],
     backBtnStyle: ''
   },
 
@@ -143,8 +144,10 @@ Page({
       try {
         const ingredients = JSON.parse(options.ingredients);
         const cuisineId = options.cuisineId;
-        this.setData({ ingredients, cuisineId });
-        this.generateRecipe(ingredients, cuisineId);
+        const dietary = options.dietary ? JSON.parse(options.dietary) : [];
+        
+        this.setData({ ingredients, cuisineId, dietary });
+        this.generateRecipe(ingredients, cuisineId, dietary);
       } catch (e) {
         console.error('Params parse error', e);
         wx.showToast({ title: '参数错误', icon: 'none' });
@@ -152,7 +155,7 @@ Page({
     }
   },
 
-  async generateRecipe(ingredients, cuisineId) {
+  async generateRecipe(ingredients, cuisineId, dietary) {
     // 1. 启动 AI 动画
     this.setData({ loading: true, loadingText: '正在识别食材灵感...' });
 
@@ -167,7 +170,7 @@ Page({
 
     // 3. 模拟请求结束 (4.5秒后)
     setTimeout(() => {
-      const mockResult = this.generateMockResult(ingredients, cuisineId);
+      const mockResult = this.generateMockResult(ingredients, cuisineId, dietary);
       this.setData({ 
         loading: false, 
         recipe: mockResult
@@ -176,12 +179,18 @@ Page({
   },
 
   // 模拟数据生成
-  generateMockResult(ingredients, cuisineId) {
+  generateMockResult(ingredients, cuisineId, dietary) {
     const cuisine = cuisines.find(c => c.id === cuisineId)?.name || '融合菜';
     const ing = ingredients.join('、');
+    
+    const tags = ['低卡路里', '大厨推荐', '15分钟快手'];
+    if (dietary && dietary.length > 0) {
+      tags.push(...dietary);
+    }
+
     return {
       title: `秘制${cuisine}风味${ing}`,
-      tags: ['低卡路里', '大厨推荐', '15分钟快手'],
+      tags: tags,
       image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       calories: 320,
       time: '20min',

@@ -6,9 +6,9 @@
     "pages/recipe/profile/index"
   ],
   "tabBar": {
-    "custom": false,
+    "custom": true,
     "color": "#666666",
-    "selectedColor": "#0052d9",
+    "selectedColor": "#FA8C16",
     "backgroundColor": "#ffffff",
     "list": [
       {

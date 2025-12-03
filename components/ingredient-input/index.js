@@ -7,16 +7,36 @@ Component({
     ingredientCategories: {
       type: Array,
       value: []
+    },
+    selectedRestrictions: {
+      type: Array,
+      value: []
     }
   },
 
   data: {
     inputValue: '',
     currentCategoryIndex: 0,
-    showIngredientPopup: false
+    showIngredientPopup: false,
+    restrictions: ['不吃香菜', '不吃葱', '不吃蒜', '不吃姜', '不吃辣', '低油', '低盐', '低糖']
   },
 
   methods: {
+    toggleRestriction(e) {
+      const { item } = e.currentTarget.dataset;
+      const { selectedRestrictions } = this.properties;
+      const index = selectedRestrictions.indexOf(item);
+      
+      let newSelection;
+      if (index > -1) {
+        newSelection = selectedRestrictions.filter(i => i !== item);
+      } else {
+        newSelection = [...selectedRestrictions, item];
+      }
+      
+      this.triggerEvent('dietaryChange', { value: newSelection });
+    },
+
     onInput(e) {
       this.setData({ inputValue: e.detail.value });
     },

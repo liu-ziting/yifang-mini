@@ -82,10 +82,23 @@ Page({
     cuisineSections: [
       { title: '🇨🇳 中华八大菜系', items: defaultCuisines.slice(0, 8) }
     ],
-    selectedCuisineId: null
+    selectedCuisineId: null,
+    dietaryRestrictions: [] // 用户忌口
   },
 
   onLoad() {
+  },
+  
+  onDietaryChange(e) {
+    this.setData({
+      dietaryRestrictions: e.detail.value
+    });
+  },
+
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().init();
+    }
   },
 
   onAddIngredient(e) {
@@ -122,9 +135,10 @@ Page({
   onGenerate() {
     const ingredients = JSON.stringify(this.data.basket);
     const cuisineId = this.data.selectedCuisineId;
+    const dietary = JSON.stringify(this.data.dietaryRestrictions);
     
     wx.navigateTo({
-      url: `/pages/recipe/detail/index?ingredients=${ingredients}&cuisineId=${cuisineId}`
+      url: `/pages/recipe/detail/index?ingredients=${ingredients}&cuisineId=${cuisineId}&dietary=${dietary}`
     });
   }
 });

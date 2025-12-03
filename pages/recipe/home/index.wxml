@@ -19,8 +19,10 @@
       <ingredient-input 
         basket="{{basket}}" 
         ingredientCategories="{{ingredientCategories}}"
+        selectedRestrictions="{{dietaryRestrictions}}"
         bind:add="onAddIngredient"
         bind:remove="onRemoveIngredient"
+        bind:dietaryChange="onDietaryChange"
         bind:next="nextStep"
       />
     </block>

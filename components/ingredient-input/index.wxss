@@ -98,6 +98,39 @@
   transform: scale(0.98);
 }
 
+/* --- Dietary Restrictions --- */
+.dietary-section {
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  color: #999;
+  font-weight: 500;
+}
+
+.tags-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.tags-wrapper {
+  display: flex;
+  padding: 4rpx 0 10rpx 0;
+}
+
+.dietary-tag {
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
 /* --- Action Area --- */
 .action-area {
   margin-top: 60rpx;

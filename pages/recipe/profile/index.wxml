@@ -1,17 +1,52 @@
-<t-navbar title="个人中心" left-arrow="{{false}}" />
-<view class="container" style="padding-top: {{navbarHeight}}px;">
-  <view class="user-card">
-    <t-avatar icon="user" size="large" />
-    <view class="user-info">
-      <view class="username">用户</view>
-    </view>
-  </view>
+<t-navbar title="个人中心" left-arrow="{{false}}" style="--td-navbar-bg-color: transparent;" />
 
-  <view class="menu-list">
-    <t-cell-group theme="card">
-      <t-cell title="我的收藏" arrow hover />
-      <t-cell title="历史记录" arrow hover />
-      <t-cell title="关于我们" arrow hover />
-    </t-cell-group>
+<view class="profile-header">
+  <image class="header-bg" src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" mode="aspectFill" />
+  <view class="header-overlay"></view>
+  <view class="user-content" style="padding-top: {{navbarHeight}}px;">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="avatar-edit-hint">
+        <t-icon name="camera" size="16px" color="#fff" />
+      </view>
+    </button>
+    <input type="nickname" class="nickname-input" placeholder="点击输入昵称" placeholder-class="nickname-placeholder" value="{{hasUserInfo ? userInfo.nickName : ''}}" bind:change="onInputNickname" />
+  </view>
+</view>
+
+<view class="container">
+  <view class="menu-grid">
+    <view class="menu-card">
+      <view class="card-icon-bg" style="background: #e6f7ff;">
+        <t-icon name="heart" size="24px" color="#1890ff" />
+      </view>
+      <view class="card-info">
+        <view class="card-title">我的收藏</view>
+        <view class="card-desc">查看您收藏的美味食谱</view>
+      </view>
+      <t-icon name="chevron-right" size="20px" color="#ccc" />
+    </view>
+
+    <view class="menu-card">
+      <view class="card-icon-bg" style="background: #fff7e6;">
+        <t-icon name="time" size="24px" color="#fa8c16" />
+      </view>
+      <view class="card-info">
+        <view class="card-title">历史记录</view>
+        <view class="card-desc">回顾您的烹饪足迹</view>
+      </view>
+      <t-icon name="chevron-right" size="20px" color="#ccc" />
+    </view>
+
+    <view class="menu-card">
+      <view class="card-icon-bg" style="background: #f6ffed;">
+        <t-icon name="user-circle" size="24px" color="#52c41a" />
+      </view>
+      <view class="card-info">
+        <view class="card-title">关于我们</view>
+        <view class="card-desc">了解一方食谱的故事</view>
+      </view>
+      <t-icon name="chevron-right" size="20px" color="#ccc" />
+    </view>
   </view>
 </view>
