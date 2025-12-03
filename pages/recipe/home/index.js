@@ -80,8 +80,7 @@ Page({
     ingredientCategories, // 食材分类数据
     
     cuisineSections: [
-      { title: '🇨🇳 中华八大菜系', items: defaultCuisines.slice(0, 8) },
-      { title: '🌍 国际菜系', items: defaultCuisines.slice(8) }
+      { title: '🇨🇳 中华八大菜系', items: defaultCuisines.slice(0, 8) }
     ],
     selectedCuisineId: null
   },

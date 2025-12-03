@@ -4,106 +4,162 @@
 
 .cuisine-section {
   padding-bottom: 20rpx;
+  overflow: hidden; /* Prevent scroll overflow during swipe */
 }
 
 .section-title-cuisine {
-  font-size: 30rpx;
-  font-weight: bold;
+  font-size: 32rpx;
+  font-weight: 800;
   color: #333;
-  margin: 30rpx 0 20rpx;
+  margin: 40rpx 0 40rpx;
+  padding-left: 8rpx;
+  border-left: 8rpx solid #FA8C16;
+  line-height: 1;
 }
 
-.cuisine-grid {
+/* --- Stack Container --- */
+.card-stack-container {
+  position: relative;
+  width: 100%;
+  height: 800rpx; /* Tall enough for the cards */
   display: flex;
-  flex-wrap: wrap;
-  gap: 20rpx;
-  padding-bottom: 20rpx;
+  justify-content: center;
+  /* Perspective for 3D feel if supported, but flat stack is safer */
+  perspective: 1000px;
+  padding-top: 40rpx; /* Add some padding top to avoid clipping */
 }
 
-.cuisine-item {
-  display: inline-flex;
+/* --- Stack Card --- */
+.stack-card {
+  position: absolute;
+  top: 40rpx; /* Move down slightly */
+  /* Centered horizontally */
+  left: 50%; 
+  margin-left: -260rpx; /* Half of width */
+  width: 520rpx; /* Slightly smaller width */
+  height: 680rpx; /* Slightly smaller height */
+  
+  background: #fff;
+  border-radius: 40rpx;
+  padding: 40rpx 32rpx;
+  box-sizing: border-box;
+  box-shadow: 0 12rpx 48rpx rgba(0,0,0,0.08);
+  border: 2rpx solid #fff;
+  
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 140rpx;
-  height: 140rpx;
-  background: #fff;
-  border: 2rpx solid #f0f0f0;
-  border-radius: 24rpx;
-  transition: all 0.2s;
-  box-sizing: border-box;
+  
+  /* Transition is handled by JS during drag, but we need it for reset */
+  /* transition: transform 0.3s ease; We will manage this in JS or conditionally */
+  transform-origin: center bottom;
+  will-change: transform, opacity;
 }
 
-.cuisine-grid .cuisine-item {
-  width: calc(25% - 15rpx); /* 4 items per row */
-  margin-right: 0;
-}
-
-.cuisine-item.active {
-  background: #fff7e6; /* 浅橙色背景 */
+.stack-card.is-active {
+  /* Active styling enhancements */
   border-color: #FA8C16;
-  transform: scale(1.05);
-  box-shadow: 0 8rpx 20rpx rgba(250, 140, 22, 0.2);
+  background: linear-gradient(to bottom, #fff, #fffbf5);
 }
 
-.cuisine-emoji {
-  font-size: 48rpx;
-  margin-bottom: 10rpx;
-}
-.cuisine-name {
-  font-size: 26rpx;
-  color: #666;
-  font-weight: 500;
-}
-.cuisine-item.active .cuisine-name {
-  color: #FA8C16;
-  font-weight: bold;
+/* --- Content Styles --- */
+.chef-avatar {
+  font-size: 140rpx;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+  filter: drop-shadow(0 8rpx 16rpx rgba(0,0,0,0.1));
 }
 
-.action-area {
-  margin-top: 60rpx;
-}
-.btn-group {
-  display: flex;
-  gap: 24rpx;
-}
-
-.generate-btn {
-  background: linear-gradient(135deg, #FF7D00 0%, #FA8C16 100%);
-  color: #fff;
-  border-radius: 50rpx;
-  height: 100rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34rpx;
-  font-weight: bold;
-  box-shadow: 0 10rpx 30rpx rgba(250, 140, 22, 0.4);
-  border: none;
+.chef-info {
+  text-align: center;
   width: 100%;
 }
 
-.btn-secondary {
-  background: #f2f3f5;
+.chef-name {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.chef-desc {
+  font-size: 28rpx;
   color: #666;
-  box-shadow: none;
-  border: 2rpx solid #e8e8e8;
+  margin-bottom: 30rpx;
+  line-height: 1.6;
+  padding: 0 20rpx;
+  
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.chef-specialty {
+  font-size: 26rpx;
+  color: #FA8C16;
+  background: rgba(250, 140, 22, 0.1);
+  padding: 12rpx 30rpx;
+  border-radius: 100rpx;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.select-indicator {
+  position: absolute;
+  top: 32rpx;
+  right: 32rpx;
+  background: #FA8C16;
+  border-radius: 50%;
+  padding: 8rpx;
+  display: flex;
+}
+
+/* Buttons Area */
+.action-area {
+  margin-top: 20rpx;
+  padding-bottom: 40rpx;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40rpx;
+  gap: 30rpx;
+}
+
+.generate-btn {
   flex: 1;
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: none;
+  transition: all 0.2s;
+  margin: 0; /* Reset default button margin */
+}
+
+.generate-btn::after {
+  border: none;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+  flex: 0.4; /* Smaller width for "Previous" */
 }
 
 .btn-primary {
-  flex: 2;
+  background: linear-gradient(135deg, #FA8C16 0%, #FFBB50 100%);
+  color: #fff;
+  box-shadow: 0 8rpx 24rpx rgba(250, 140, 22, 0.3);
+  flex: 0.6; /* Larger width for "Generate" */
 }
 
 .btn-hover {
   transform: scale(0.98);
   opacity: 0.9;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10rpx); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
 }

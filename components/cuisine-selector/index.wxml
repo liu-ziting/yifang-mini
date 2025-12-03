@@ -1,16 +1,29 @@
 <view class="step-content fade-in">
   <view class="cuisine-section">
-    <block wx:for="{{cuisineSections}}" wx:for-item="section" wx:key="title">
-      <view class="section-title-cuisine">{{section.title}}</view>
-      <view class="cuisine-grid">
-        <block wx:for="{{section.items}}" wx:key="id">
+    <block wx:for="{{cuisineSections}}" wx:for-item="section" wx:for-index="sIdx" wx:key="title">
+      
+      <!-- Custom Card Stack Container -->
+      <view 
+        class="card-stack-container"
+        bindtouchstart="onTouchStart"
+        bindtouchmove="onTouchMove"
+        bindtouchend="onTouchEnd"
+        data-section-index="{{sIdx}}"
+      >
+        <block wx:for="{{section.items}}" wx:for-item="item" wx:for-index="iIdx" wx:key="id">
           <view 
-            class="cuisine-item {{selectedCuisineId === item.id ? 'active' : ''}}" 
-            bindtap="onSelectCuisine" 
+            class="stack-card {{selectedCuisineId === item.id ? 'is-active' : ''}}" 
+            style="{{cardStyles[sIdx][iIdx] || ''}}; z-index: {{100 - iIdx}};"
             data-id="{{item.id}}"
+            data-index="{{iIdx}}"
+            catchtap="onCardTap"
           >
-            <view class="cuisine-emoji">{{item.avatar}}</view>
-            <text class="cuisine-name">{{item.name}}</text>
+            <view class="chef-avatar">{{item.avatar}}</view>
+            <view class="chef-info">
+              <view class="chef-name">{{item.name}}</view>
+              <view class="chef-desc">{{item.description}}</view>
+              <view class="chef-specialty">擅长: {{item.specialty}}</view>
+            </view>
           </view>
         </block>
       </view>
