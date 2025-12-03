@@ -1,15 +1,7 @@
 {
-  "navigationBarTitleText": "AI 灵感厨房",
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationStyle": "custom", 
   "usingComponents": {
-    "t-button": "tdesign-miniprogram/button/button",
-    "t-icon": "tdesign-miniprogram/icon/icon",
-    "t-image": "tdesign-miniprogram/image/image",
-    "t-popup": "tdesign-miniprogram/popup/popup",
-    "t-loading": "tdesign-miniprogram/loading/loading",
-    "t-avatar": "tdesign-miniprogram/avatar/avatar",
-    "t-tag": "tdesign-miniprogram/tag/tag",
-    "t-navbar": "tdesign-miniprogram/navbar/navbar"
-  }
+    "ingredient-input": "/components/ingredient-input/index",
+    "cuisine-selector": "/components/cuisine-selector/index"
+  },
+  "navigationBarTitleText": "AI 厨房"
 }

@@ -1,0 +1,68 @@
+<view class="container">
+  <!-- 加载动画蒙层 -->
+  <view class="loading-overlay" wx:if="{{loading}}">
+    <view class="loading-content">
+      <t-loading theme="circular" size="50px" class="custom-loading-icon" text="" inherit-color />
+      <view class="loading-text">{{loadingText}}</view>
+    </view>
+  </view>
+
+  <!-- 结果展示 -->
+  <scroll-view scroll-y style="height: 100vh; background: #fff;" wx:if="{{recipe && !loading}}">
+    
+    <!-- 菜谱头图 -->
+    <view class="recipe-header">
+      <image src="{{recipe.image}}" mode="aspectFill" class="recipe-img"></image>
+      <!-- 返回按钮 (自定义导航栏时需要，如果是原生导航栏可省略，这里演示用) -->
+      <!-- <view class="back-btn" bindtap="onBack">
+        <t-icon name="arrow-left" size="24px" color="#fff"/>
+      </view> -->
+      <view class="recipe-header-content">
+        <view class="recipe-title">{{recipe.title}}</view>
+        <view class="recipe-tags">
+          <view wx:for="{{recipe.tags}}" wx:key="index" class="r-tag">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 详细内容 -->
+    <view class="recipe-body">
+      <!-- 仪表盘数据 -->
+      <view class="dashboard">
+        <view class="dash-item">
+          <view class="dash-val">{{recipe.calories}}</view>
+          <view class="dash-label">卡路里</view>
+        </view>
+        <view class="dash-line"></view>
+        <view class="dash-item">
+          <view class="dash-val">{{recipe.time}}</view>
+          <view class="dash-label">时长</view>
+        </view>
+        <view class="dash-line"></view>
+        <view class="dash-item">
+          <view class="dash-val" style="font-size: 28rpx;">{{recipe.wine}}</view>
+          <view class="dash-label">佐餐推荐</view>
+        </view>
+      </view>
+
+      <view class="section-header">大厨说</view>
+      <view class="recipe-desc">{{recipe.desc}}</view>
+
+      <view class="section-header">烹饪步骤</view>
+      <view class="step-list">
+        <block wx:for="{{recipe.steps}}" wx:key="index">
+          <view class="step-card">
+            <view class="step-num">{{index + 1}}</view>
+            <view class="step-info">
+              <view class="step-title">{{item.title}}</view>
+              <view class="step-desc">{{item.desc}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- 底部留白 -->
+      <view style="height: 60px;"></view>
+    </view>
+  </scroll-view>
+</view>

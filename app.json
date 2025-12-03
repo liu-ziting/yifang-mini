@@ -2,6 +2,7 @@
   "darkmode": true,
   "pages": [
     "pages/recipe/home/index",
+    "pages/recipe/detail/index",
     "pages/recipe/profile/index"
   ],
   "tabBar": {

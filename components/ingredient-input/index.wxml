@@ -1,0 +1,93 @@
+<view class="step-content fade-in">
+  <view class="input-row">
+    <view class="input-wrapper">
+      <t-icon name="search" size="20px" color="#bbb" style="margin-right: 8px;" />
+      <input 
+        class="custom-input" 
+        placeholder="输入食材，如：番茄、鸡蛋" 
+        placeholder-class="placeholder-style"
+        value="{{inputValue}}"
+        bindinput="onInput"
+        bindconfirm="addIngredient"
+      />
+    </view>
+    <view class="add-btn-mini" bindtap="addIngredient" hover-class="btn-hover">
+      <t-icon name="add" size="24px" color="#fff" />
+    </view>
+  </view>
+
+  <view class="basket-section">
+    <view class="section-title" wx:if="{{basket.length > 0}}">已选食材 ({{basket.length}})</view>
+    <view class="basket-list">
+      <block wx:for="{{basket}}" wx:key="*this">
+        <view class="basket-tag" bindtap="removeIngredient" data-index="{{index}}">
+          <text>{{item}}</text>
+          <t-icon name="close" size="16px" color="#fff" style="margin-left: 4px;" />
+        </view>
+      </block>
+      <!-- Trigger Button -->
+      <view class="basket-trigger" bindtap="openIngredientPopup">
+        <t-icon name="shop" size="18px" color="#FA8C16" style="margin-right: 6px;" />
+        <text>打开菜篮子</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-area" wx:if="{{basket.length > 0}}">
+    <button class="generate-btn" bindtap="nextStep" hover-class="btn-hover">
+      <text>下一步：选择口味</text>
+      <t-icon name="arrow-right" size="20px" color="#fff" style="margin-left:8px;"/>
+    </button>
+  </view>
+</view>
+
+<!-- Ingredient Selection Popup -->
+<!-- 使用 root-portal 解决父元素 transform 导致 fixed 定位失效的问题 -->
+<root-portal>
+  <t-popup visible="{{showIngredientPopup}}" bind:visible-change="closeIngredientPopup" placement="bottom" z-index="15000">
+    <view class="popup-container">
+      <view class="popup-header">
+        <text>食材库</text>
+        <view class="close-btn" bindtap="closeIngredientPopup">
+          <t-icon name="close" size="24px" color="#999" />
+        </view>
+      </view>
+      
+      <view class="category-container">
+        <!-- Sidebar Categories -->
+        <scroll-view scroll-y class="category-sidebar" show-scrollbar="{{false}}">
+          <block wx:for="{{ingredientCategories}}" wx:key="name">
+            <view 
+              class="cat-tab {{currentCategoryIndex === index ? 'active' : ''}}" 
+              bindtap="switchCategory" 
+              data-index="{{index}}"
+            >
+              {{item.name}}
+            </view>
+          </block>
+        </scroll-view>
+
+        <!-- Content Grid -->
+        <scroll-view scroll-y class="category-content" show-scrollbar="{{false}}">
+          <view class="ing-grid">
+            <block wx:for="{{ingredientCategories[currentCategoryIndex].items}}" wx:key="*this">
+              <view 
+                class="ing-item {{tools.includes(basket, item) ? 'selected' : ''}}" 
+                bindtap="addFromCategory" 
+                data-item="{{item}}"
+              >
+                <text>{{item}}</text>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </t-popup>
+</root-portal>
+
+<wxs module="tools">
+  module.exports.includes = function(arr, item) {
+    return arr.indexOf(item) > -1;
+  }
+</wxs>

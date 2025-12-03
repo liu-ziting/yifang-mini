@@ -1,0 +1,29 @@
+<view class="step-content fade-in">
+  <view class="cuisine-section">
+    <block wx:for="{{cuisineSections}}" wx:for-item="section" wx:key="title">
+      <view class="section-title-cuisine">{{section.title}}</view>
+      <view class="cuisine-grid">
+        <block wx:for="{{section.items}}" wx:key="id">
+          <view 
+            class="cuisine-item {{selectedCuisineId === item.id ? 'active' : ''}}" 
+            bindtap="onSelectCuisine" 
+            data-id="{{item.id}}"
+          >
+            <view class="cuisine-emoji">{{item.avatar}}</view>
+            <text class="cuisine-name">{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+
+  <view class="action-area btn-group">
+    <button class="generate-btn btn-secondary" bindtap="prevStep" hover-class="btn-hover">
+      <text>上一步</text>
+    </button>
+    <button class="generate-btn btn-primary" bindtap="onGenerate" hover-class="btn-hover">
+      <text>开始生成</text>
+      <t-icon name="magic" size="20px" color="#fff" style="margin-left:8px;"/>
+    </button>
+  </view>
+</view>
