@@ -116,23 +116,25 @@
       }
     </wxs>
 
-    <!-- 步骤 1: 选择风格 -->
+    <!-- 步骤 1: 选择菜系 -->
     <block wx:if="{{currentStep === 1}}">
       <view class="step-content fade-in">
         <view class="cuisine-section">
-          <view class="label">选择一种风格</view>
-          <view class="cuisine-grid">
-            <block wx:for="{{cuisines}}" wx:key="id">
-              <view 
-                class="cuisine-item {{selectedCuisineId === item.id ? 'active' : ''}}" 
-                bindtap="onSelectCuisine" 
-                data-id="{{item.id}}"
-              >
-                <view class="cuisine-emoji">{{item.icon}}</view>
-                <text class="cuisine-name">{{item.name}}</text>
-              </view>
-            </block>
-          </view>
+          <block wx:for="{{cuisineSections}}" wx:for-item="section" wx:key="title">
+            <view class="section-title-cuisine">{{section.title}}</view>
+            <view class="cuisine-grid">
+              <block wx:for="{{section.items}}" wx:key="id">
+                <view 
+                  class="cuisine-item {{selectedCuisineId === item.id ? 'active' : ''}}" 
+                  bindtap="onSelectCuisine" 
+                  data-id="{{item.id}}"
+                >
+                  <view class="cuisine-emoji">{{item.avatar}}</view>
+                  <text class="cuisine-name">{{item.name}}</text>
+                </view>
+              </block>
+            </view>
+          </block>
         </view>
 
         <view class="action-area btn-group">
