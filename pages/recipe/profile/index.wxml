@@ -1,0 +1,17 @@
+<t-navbar title="个人中心" left-arrow="{{false}}" />
+<view class="container" style="padding-top: {{navbarHeight}}px;">
+  <view class="user-card">
+    <t-avatar icon="user" size="large" />
+    <view class="user-info">
+      <view class="username">用户</view>
+    </view>
+  </view>
+
+  <view class="menu-list">
+    <t-cell-group theme="card">
+      <t-cell title="我的收藏" arrow hover />
+      <t-cell title="历史记录" arrow hover />
+      <t-cell title="关于我们" arrow hover />
+    </t-cell-group>
+  </view>
+</view>

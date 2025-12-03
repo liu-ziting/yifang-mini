@@ -1,0 +1,48 @@
+{
+  "darkmode": true,
+  "pages": [
+    "pages/recipe/home/index",
+    "pages/recipe/profile/index"
+  ],
+  "tabBar": {
+    "custom": false,
+    "color": "#666666",
+    "selectedColor": "#0052d9",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/recipe/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/recipe/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "themeLocation": "theme.json",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar"
+  },
+  "window": {
+    "navigationBarTitleText": "TDesign",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "@navTxtStyle"
+  },
+  "resolveAlias": {
+    "@behaviors/*": "behaviors/*"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "rendererOptions": {
+    "skyline": {
+      "disableABTest": true,
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "sdkVersionBegin": "3.4.3",
+      "sdkVersionEnd": "15.255.255"
+    }
+  }
+}

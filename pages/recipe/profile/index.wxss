@@ -1,0 +1,18 @@
+.container {
+  padding: 32rpx;
+}
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 48rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 32rpx;
+}
+.user-info {
+  margin-left: 32rpx;
+}
+.username {
+  font-size: 36rpx;
+  font-weight: bold;
+}
