@@ -37,15 +37,18 @@ page {
 }
 .back-btn {
   position: absolute;
-  top: env(safe-area-inset-top);
   left: 32rpx;
+  width: 64rpx;
+  height: 64rpx;
   background: rgba(0,0,0,0.3);
   border-radius: 50%;
-  padding: 10rpx;
   backdrop-filter: blur(10px);
-  margin-top: 20rpx;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .recipe-header-content {
   position: absolute;
   bottom: 0;
@@ -165,4 +168,82 @@ page {
   font-size: 28rpx;
   color: #666;
   line-height: 1.6;
+}
+
+/* 步骤元数据（时间、火候） */
+.step-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+  flex-wrap: wrap;
+}
+.step-time, .step-heat {
+  display: inline-flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #FA8C16;
+  background: #fff7e6;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+}
+
+/* 烹饪技巧 */
+.tips-card {
+  background: #f5f5f5;
+  padding: 24rpx;
+  border-radius: 16rpx;
+}
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+.tip-item:last-child {
+  margin-bottom: 0;
+}
+.tip-dot {
+  width: 12rpx;
+  height: 12rpx;
+  background: #FA8C16;
+  border-radius: 50%;
+  margin-top: 14rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+.tip-text {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* 营养分析 */
+.nutrition-card {
+  display: flex;
+  flex-wrap: wrap;
+  background: #f9f9f9;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+.nutrition-item {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 24rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #eee;
+}
+.nutrition-item:nth-last-child(1),
+.nutrition-item:nth-last-child(2) {
+  border-bottom: none;
+}
+.nutrition-name {
+  font-size: 28rpx;
+  color: #666;
+}
+.nutrition-val {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
 }

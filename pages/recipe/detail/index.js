@@ -127,10 +127,18 @@ Page({
     loadingText: 'AI 正在热锅...',
     recipe: null,
     ingredients: [],
-    cuisineId: null
+    cuisineId: null,
+    backBtnStyle: ''
   },
 
   onLoad(options) {
+    const rect = wx.getMenuButtonBoundingClientRect();
+    if (rect) {
+      this.setData({
+        backBtnStyle: `top: ${rect.top}px; height: ${rect.height}px; width: ${rect.height}px;`
+      });
+    }
+
     if (options.ingredients) {
       try {
         const ingredients = JSON.parse(options.ingredients);
@@ -174,17 +182,28 @@ Page({
     return {
       title: `秘制${cuisine}风味${ing}`,
       tags: ['低卡路里', '大厨推荐', '15分钟快手'],
-      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', // 更有食欲的图
+      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       calories: 320,
       time: '20min',
       difficulty: '简单',
       wine: cuisine.includes('西') || cuisine.includes('法') || cuisine.includes('意') ? '干红葡萄酒' : '冰镇酸梅汤',
       desc: `这是一道将${ing}发挥到极致的料理。${cuisine}独特的烹饪技法锁住了食材的水分，搭配特制酱汁，每一口都是精华。`,
       steps: [
-        { title: '备菜', desc: '将食材洗净，改刀成均匀的小块，沥干水分。' },
-        { title: '爆香', desc: '热锅凉油，放入姜蒜爆出香味。' },
-        { title: '烹饪', desc: '倒入食材大火快炒，加入灵魂酱汁焖煮5分钟。' },
-        { title: '摆盘', desc: '撒上葱花或芝麻，淋上少许香油即可出锅。' }
+        { title: '备菜', desc: '将食材洗净，改刀成均匀的小块，沥干水分。', time: '5min', heat: '无' },
+        { title: '爆香', desc: '热锅凉油，放入姜蒜爆出香味。', time: '2min', heat: '中火' },
+        { title: '烹饪', desc: '倒入食材大火快炒，加入灵魂酱汁焖煮5分钟。', time: '5min', heat: '大火' },
+        { title: '摆盘', desc: '撒上葱花或芝麻，淋上少许香油即可出锅。', time: '1min', heat: '无' }
+      ],
+      tips: [
+        '食材改刀时尽量保持大小均匀，确保受热一致',
+        '爆香姜蒜时注意火候，避免炒焦影响口感',
+        '焖煮时间不宜过长，防止食材过软失去嚼劲'
+      ],
+      nutrition: [
+        { name: '蛋白质', value: '18g' },
+        { name: '碳水化合物', value: '25g' },
+        { name: '脂肪', value: '12g' },
+        { name: '膳食纤维', value: '5g' }
       ]
     };
   },

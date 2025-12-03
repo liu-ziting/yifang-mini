@@ -13,15 +13,12 @@
     <!-- 菜谱头图 -->
     <view class="recipe-header">
       <image src="{{recipe.image}}" mode="aspectFill" class="recipe-img"></image>
-      <!-- 返回按钮 (自定义导航栏时需要，如果是原生导航栏可省略，这里演示用) -->
-      <!-- <view class="back-btn" bindtap="onBack">
-        <t-icon name="arrow-left" size="24px" color="#fff"/>
-      </view> -->
+      <!-- 返回按钮 -->
+      <view class="back-btn" bindtap="onBack" style="{{backBtnStyle}}">
+        <t-icon name="chevron-left" size="24px" color="#fff"/>
+      </view>
       <view class="recipe-header-content">
         <view class="recipe-title">{{recipe.title}}</view>
-        <view class="recipe-tags">
-          <view wx:for="{{recipe.tags}}" wx:key="index" class="r-tag">{{item}}</view>
-        </view>
       </view>
     </view>
 
@@ -40,8 +37,8 @@
         </view>
         <view class="dash-line"></view>
         <view class="dash-item">
-          <view class="dash-val" style="font-size: 28rpx;">{{recipe.wine}}</view>
-          <view class="dash-label">佐餐推荐</view>
+          <view class="dash-val" >{{recipe.difficulty}}</view>
+          <view class="dash-label">难度</view>
         </view>
       </view>
 
@@ -55,8 +52,32 @@
             <view class="step-num">{{index + 1}}</view>
             <view class="step-info">
               <view class="step-title">{{item.title}}</view>
+              <view class="step-meta">
+                <text class="step-time" wx:if="{{item.time}}"><t-icon name="time" size="14px" style="margin-right: 4rpx;"/>{{item.time}}</text>
+                <text class="step-heat" wx:if="{{item.heat}}"><t-icon name="fire" size="14px" style="margin-right: 4rpx;"/>{{item.heat}}</text>
+              </view>
               <view class="step-desc">{{item.desc}}</view>
             </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="section-header">烹饪技巧</view>
+      <view class="tips-card">
+        <block wx:for="{{recipe.tips}}" wx:key="index">
+          <view class="tip-item">
+            <view class="tip-dot"></view>
+            <view class="tip-text">{{item}}</view>
+          </view>
+        </block>
+      </view>
+
+      <view class="section-header">营养分析</view>
+      <view class="nutrition-card">
+        <block wx:for="{{recipe.nutrition}}" wx:key="name">
+          <view class="nutrition-item">
+            <view class="nutrition-name">{{item.name}}</view>
+            <view class="nutrition-val">{{item.value}}</view>
           </view>
         </block>
       </view>
