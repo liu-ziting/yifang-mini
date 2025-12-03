@@ -96,7 +96,7 @@ export const generateCustomRecipe = (ingredients, customPrompt) => {
             wine: '推荐搭配清茶或果汁',
             desc: recipeData.desc || `这是一道使用${ingredients.join('、')}精心烹制的美味佳肴。`,
             steps: (recipeData.steps || []).map(step => ({
-              title: `步骤${step.step}`,
+              // title: `步骤${step.step}`, // 前端已优化展示逻辑，不再需要 title
               desc: step.description,
               time: `${step.time || 5}min`,
               heat: step.temperature || '适中'

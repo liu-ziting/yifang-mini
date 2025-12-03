@@ -14,7 +14,7 @@
     <view class="recipe-header">
       <image src="{{recipe.image}}" mode="aspectFill" class="recipe-img"></image>
       <view class="img-loading-mask" wx:if="{{generatingImage}}">
-        <t-loading theme="circular" size="30px" text="图片生成中..." inherit-color />
+        <t-loading theme="circular" size="30px" text="效果图生成中..." inherit-color />
       </view>
       <!-- 返回按钮 -->
       <view class="back-btn" bindtap="onBack" style="{{backBtnStyle}}">
@@ -54,12 +54,11 @@
           <view class="step-card">
             <view class="step-num">{{index + 1}}</view>
             <view class="step-info">
-              <view class="step-title">{{item.title}}</view>
+              <view class="step-desc">{{item.desc}}</view>
               <view class="step-meta">
                 <text class="step-time" wx:if="{{item.time}}"><t-icon name="time" size="14px" style="margin-right: 4rpx;"/>{{item.time}}</text>
                 <text class="step-heat" wx:if="{{item.heat}}"><t-icon name="fire" size="14px" style="margin-right: 4rpx;"/>{{item.heat}}</text>
               </view>
-              <view class="step-desc">{{item.desc}}</view>
             </view>
           </view>
         </block>
@@ -71,16 +70,6 @@
           <view class="tip-item">
             <view class="tip-dot"></view>
             <view class="tip-text">{{item}}</view>
-          </view>
-        </block>
-      </view>
-
-      <view class="section-header">营养分析</view>
-      <view class="nutrition-card">
-        <block wx:for="{{recipe.nutrition}}" wx:key="name">
-          <view class="nutrition-item">
-            <view class="nutrition-name">{{item.name}}</view>
-            <view class="nutrition-val">{{item.value}}</view>
           </view>
         </block>
       </view>

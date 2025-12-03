@@ -44,6 +44,7 @@ page {
   justify-content: center;
   z-index: 5;
   backdrop-filter: blur(2px);
+  color: #fff; /* 确保文字颜色为白色 */
 }
 .back-btn {
   position: absolute;
@@ -178,13 +179,13 @@ page {
   font-size: 28rpx;
   color: #666;
   line-height: 1.6;
+  margin-bottom: 12rpx; /* 增加底部间距，因为下方是元数据 */
 }
 
 /* 步骤元数据（时间、火候） */
 .step-meta {
   display: flex;
   align-items: center;
-  margin-bottom: 12rpx;
   flex-wrap: wrap;
 }
 .step-time, .step-heat {
